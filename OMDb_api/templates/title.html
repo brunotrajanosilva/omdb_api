@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block 'title' %}Title{% endblock %}
+
+{% block 'styles' %}
+<link rel="stylesheet" href="{% static 'OMDb_api/css/title.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+<h1 class="color-primary">{{error}}</h1>
+
+{% if title.Response == "True" %}
+<div class="title-content">
+    
+    <img src="{{title.Poster}}" alt="title.Title poster">
+
+    <article class="title-article">
+        <h1 class="color-primary font-size-lg">{{title.Title}}</h1>
+        <h2>
+            <span class="color-secondary font-size-sm">{{title.Rated}}</span>
+            <span class="color-secondary font-size-sm">|</span>
+            <span class="color-secondary font-size-sm">{{title.Runtime}}</span>
+            <span class="color-secondary font-size-sm">|</span>
+            <span class="color-secondary font-size-sm">{{title.Genre}}</span>
+            <span class="color-secondary font-size-sm">|</span>
+            <span class="color-secondary font-size-sm">{{title.Released}}</span>
+        </h2>
+        <p class="color-secondary font-size-md">{{title.Plot}}</p>
+
+        <div class="details">
+            <h3 class="color-secondary font-size-md">Directors: {{title.Director}} </h3>
+            <h3 class="color-secondary font-size-md">Writers: {{title.Writer}} </h3>
+            <h3 class="color-secondary font-size-md">Actors: {{title.Actors}} </h3>
+        </div>
+
+        {% for rating in title.Ratings %}
+            {% if rating.Source == 'Internet Movie Database' %}
+                <div class="imdb">
+                    <img class="imdb-logo" src="{% static 'OMDb_api/logos/imdb.jpg' %}" alt="Imdb logo image">
+                    <div class="imdb-rating-content">
+                        
+                        <span class="imdb-rating color-primary">{{title.imdbRating}}</span><span
+                        class="best-rating color-secondary font-size-sm">/10</span>
+                        <span class="imdb-votes color-secondary font-size-sm">{{title.imdbVotes}}</span>
+                    </div>
+                </div>
+
+            {% elif rating.Source == 'Rotten Tomatoes' %}
+                <div class="rottentomatoes">
+                    <img class="rt-logo" src="{% static 'OMDb_api/logos/rottentomatoes.png' %}" alt="Rotten Tomatoes logo image">
+                    <div class="rt-rating color-primary">{{rating.Value}}</div>
+                </div>
+
+            {% elif rating.Source == 'Metacritic' %}
+                <div class="metascore">
+                    <img class="metascore-logo" src="{% static 'OMDb_api/logos/metacritic.png' %}" alt="Metacritic logo image">
+
+                    <div class="metascore-rating
+                    {% if title.Metascore|add:'0' <= 39 %}mt-bad
+
+                    {% elif title.Metascore|add:'0' <= 60 %}mt-avg
+
+                    {% else %}mt-good
+
+                    {% endif %}
+                    ">{{title.Metascore|add:"0"}}</div>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+    </article>
+</div>
+
+
+{% else %}
+<h1 class="color-primary">{{title.Error}}</h1>
+{% endif %}
+
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+form{
+    margin-bottom: 80px;
+}
+
+form label{
+    color: white;
+}
+
+.grid-titles{
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) );
+    grid-gap: 20px;
+}
+
+.grid-titles .title-container{
+    margin: 0px;
+    background-position: center;
+    background-size: cover, contain;
+    background-repeat: no-repeat;
+    background-color: lavender;
+    box-shadow: 4px 4px 4px black;
+}
+
+.grid-titles .title-container img{
+    width: 100%;
+    height: auto;
+    visibility: hidden;
+    margin: 0px;
+}

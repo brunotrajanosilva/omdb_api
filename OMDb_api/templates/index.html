@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Index{% endblock %}
+
+{% block 'styles' %}
+<link rel="stylesheet" href="{% static 'OMDb_api/css/index.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+
+<form action="" method="GET">
+    {{ form }}
+    <input type="submit" value="Search"> 
+</form>
+
+{% if search_results.Response == "True" %}
+<div class="grid-titles">
+    {% for title in search_results.Search %}
+    <a href="{% url 'title' title.imdbID %}">
+
+        <div class="title-container" style="background-image: url({{title.Poster}}),
+        url('../static/OMDb_api/no_img.webp');">
+        
+            <img src="../static/OMDb_api/img_size.jpg" alt="">
+        
+        </div>
+
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<h1 class="color-primary">{{title.Error}}</h1>
+
+{% endif %}
+
+{% endblock %}

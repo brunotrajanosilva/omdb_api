@@ -1,0 +1,4 @@
+core/__pycache__
+OMDB_api/__pycache__
+OMDB_api/migrations
+.vscode

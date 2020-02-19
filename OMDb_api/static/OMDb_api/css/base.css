@@ -1,0 +1,26 @@
+.color-primary{
+    color: #fff;
+}
+
+.color-secondary{
+    color: silver;
+}
+
+.font-size-sm{
+    font-size: 13px;
+}
+
+.font-size-md{
+    font-size: 16px;
+}
+
+.font-size-lg{
+    font-size: 36px;
+}
+
+body{
+    padding: 80px;
+    background-color: #222222;
+    margin: 0px;
+    font-family: Verdana, Arial, sans-serif;
+}
