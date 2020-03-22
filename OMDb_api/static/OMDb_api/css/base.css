@@ -19,8 +19,28 @@
 }
 
 body{
-    padding: 80px;
-    background-color: #222222;
     margin: 0px;
+    background-color: #333333;
+}
+
+.base-body{
+    padding: 80px;
     font-family: Verdana, Arial, sans-serif;
+}
+
+nav#navbar{
+    background-color:white;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+nav#navbar .nav-logo{
+    font-size: 18pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-logo:hover, .nav-logo:active, .nav-logo:visited, .nav-logo:link{
+    color: black;
 }

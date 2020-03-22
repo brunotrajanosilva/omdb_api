@@ -2,7 +2,11 @@
 {% load static %}
 
 
-{% block 'title' %}Title{% endblock %}
+{% block 'title' %}
+    {% if title.Response == "True" %}
+        {{title.Title}}
+    {% endif %}
+{% endblock %}
 
 {% block 'styles' %}
 <link rel="stylesheet" href="{% static 'OMDb_api/css/title.css' %}">

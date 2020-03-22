@@ -9,28 +9,61 @@
 
 {% block 'content' %}
 
-<form action="" method="GET">
+<form action="" method="GET" id="search_form" class="form">
     {{ form }}
-    <input type="submit" value="Search"> 
+    
+    <input id="page_input" type="hidden" name="page" value="1">
+    <input type="submit" value="Search" class="btn btn-light">
 </form>
 
-{% if search_results.Response == "True" %}
+
+
+{% if results.Response == "True" %}
+
 <div class="grid-titles">
-    {% for title in search_results.Search %}
+    {% for title in results.Search %}
     <a href="{% url 'title' title.imdbID %}">
 
         <div class="title-container" style="background-image: url({{title.Poster}}),
         url('../static/OMDb_api/no_img.webp');">
         
             <img src="../static/OMDb_api/img_size.jpg" alt="">
+            <div class="title-name">
+                <h1>{{title.Title}}</h1>
+            </div>
         
         </div>
 
     </a>
     {% endfor %}
 </div>
+
+<div class="pagination">
+{% if page > 1 %}
+    <a href="#" class="color-primary pag-item" onclick="next_page(1)">first</a>
+    <a href="#" class="color-primary pag-item" onclick="next_page({{previous}})">prev</a>
+{% endif %}
+    
+<span class="color-primary pag-item">{{page}}</span>
+
+{% if page < last %}
+    <a href="#" class="color-primary pag-item" onclick="next_page({{next}})">next</a>
+    <a href="#" class="color-primary pag-item" onclick="next_page({{last}})">last</a>
+{% endif %}
+</div>
+
+<script>
+    var next_page = (page)=>{
+        var search_form = document.getElementById("search_form");
+        var page_input = document.getElementById('page_input');
+
+        page_input.value = page;
+        search_form.submit();
+    }
+</script>
+
 {% else %}
-<h1 class="color-primary">{{title.Error}}</h1>
+<h1 class="color-primary">{{results.Error}}</h1>
 
 {% endif %}
 

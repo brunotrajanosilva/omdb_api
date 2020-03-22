@@ -18,7 +18,11 @@ form label{
     background-size: cover, contain;
     background-repeat: no-repeat;
     background-color: lavender;
-    box-shadow: 4px 4px 4px black;
+    position: relative;
+}
+
+.grid-titles .title-container:hover{
+    box-shadow: 4px 4px 8px black;
 }
 
 .grid-titles .title-container img{
@@ -26,4 +30,38 @@ form label{
     height: auto;
     visibility: hidden;
     margin: 0px;
+}
+
+.grid-titles .title-container .title-name{
+    position: absolute;
+    bottom: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    width: 100%;
+}
+
+.grid-titles .title-container .title-name h1{
+    color: lavender;
+    font-size: 12pt;
+    padding: 10px;
+}
+
+.grid-titles .title-container:hover .title-name{
+    display: block;
+}
+
+.pagination{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination .pag-item{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#search_form{
+    width: 200px;
 }

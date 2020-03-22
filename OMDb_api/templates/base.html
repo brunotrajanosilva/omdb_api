@@ -8,10 +8,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block 'title' %}{% endblock %}</title>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
+
     <link rel="stylesheet" href="{% static 'OMDb_api/css/base.css' %}">
     {% block 'styles' %}{% endblock %}
 </head>
 <body>
-    {% block 'content' %}
-    {% endblock %}
+    <div>
+        <nav id="navbar">
+            <a href="{% url 'index' %}" class="nav-logo">OMDB API</a>
+        </nav>
+    </div>
+    <div class="base-body">
+        {% block 'content' %}
+        {% endblock %}
+    </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
+integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
